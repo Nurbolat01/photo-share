@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>Add photo</title>
+</head>
+<body class="m-5">
+    
+    <div class="container justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <a href="{% url 'gallery' %}" class="btn btn-outline-dark my-3">Go back</a>
+                <div class="card">
+
+
+                    <form method="POST" action="" enctype="multipart/form-data">
+
+                        {% csrf_token %}
+
+                        <div class="form-group m-3">
+                          <label>Description</label>
+                          <input required name="descriptions" type="text" placeholder="Enter a descriptions" class="form-control">
+                        </div>
+
+
+                        <div class="form-group m-3">
+                            <label>Select a category</label>
+                            <select name="category" class="form-control">
+                                <option value="none">Select category...</option>
+
+                                {% for category in categories %}
+                                    <option value="{{category.id}}">{{category.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+
+                        <div class="form-group m-3">
+                            <label>Create a new category</label>
+                            <input name="category_new" type="text" placeholder="Create a new category" class="form-control">
+                        </div>
+
+
+                        <div class="form-group m-3">
+                            <label>Uplodad image</label>
+                            <input name="image" type="file" class="form-control-file">
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-dark btn-block">Submit</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
